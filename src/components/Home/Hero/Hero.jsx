@@ -18,7 +18,7 @@ export default function Hero() {
 
       gsap.to(renderWrapper, {
          opacity: 1,
-         delay: 3,
+         delay: 2,
          duration: .5,
       })
    }, [])
