@@ -4,6 +4,7 @@ import './loader.scss';
 import gsap from 'gsap';
 
 export default function Loader() {
+   const loaderWrapper = useRef(null);
    const logo = useRef(null);
    const topLine = useRef(null);
    const centerLine = useRef(null);
@@ -43,10 +44,18 @@ export default function Loader() {
          delay: 1.3,
          ease: 'expo.inOut'
       });
+
+      gsap.to(loaderWrapper.current, {
+         delay: 3,
+         duration: 0,
+         onComplete: () => {
+            loaderWrapper.current.style.pointerEvents = "none";
+         },
+      });
    }, []);
 
    return (
-      <div className='loader__wrapper'>
+      <div ref={loaderWrapper} className='loader__wrapper'>
          <svg ref={logo} width="90" height="91" viewBox="0 0 90 91" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_99_24)">
                <path d="M89.1742 3.09814V26.3485C89.175 26.7556 89.0951 27.1589 88.9393 27.535C88.7834 27.9111 88.5545 28.2527 88.266 28.5399C87.9774 28.8271 87.6348 29.0544 87.258 29.2085C86.8812 29.3627 86.4775 29.4407 86.0704 29.4381C80.7882 29.4068 70.107 29.3356 64.8817 29.2815C61.6554 29.2501 59.1553 30.4205 57.0965 32.9036C50.7891 40.5065 44.328 47.9956 38.1175 55.667C36.315 57.8938 34.4669 58.7338 31.6137 58.6825C24.8194 58.5629 11.8373 58.5715 3.92967 58.5886C3.34396 58.5884 2.77037 58.4217 2.27589 58.1078C1.78141 57.7939 1.38645 57.3457 1.13713 56.8158C0.887811 56.2858 0.794424 55.6958 0.867878 55.1147C0.941331 54.5336 1.17859 53.9854 1.55195 53.5341C12.5293 40.4154 33.6468 15.2231 37.5679 10.6072C43.5165 3.61355 51.1052 0.0711857 60.2914 0.0227772C68.8341 -0.0142411 77.3768 0.0056918 86.0818 0.0227772C86.8988 0.0235118 87.6824 0.347217 88.2617 0.923313C88.841 1.49941 89.169 2.28117 89.1742 3.09814Z" fill="url(#paint0_linear_99_24)" />

@@ -16,7 +16,7 @@
       z-index: 2;
 
       .logo-text__path {
-         fill: var(--black);
+         fill: var(--white);
       }
    }
 
@@ -30,12 +30,12 @@
    .top__line, .bottom__line {
       width: 100%;
       height: 100%;
-      background: var(--white);
+      background: var(--black);
    }
 
    .center__line {
       width: 100%;
       min-height: 170px;
-      background: var(--white);
+      background: var(--black);
    }
 }
