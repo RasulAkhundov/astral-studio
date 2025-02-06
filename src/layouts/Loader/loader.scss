@@ -21,21 +21,19 @@
    }
 
    .top__line {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-top: 28px;
+      width: 100%;
+      min-height: 500px;
+      background: var(--loaderColor);
    }
 
-   .top__line, .bottom__line {
+   .bottom__line {
       width: 100%;
       height: 100%;
-      background: var(--black);
+      background: var(--loaderColor);
    }
 
    .center__line {
       width: 100%;
-      min-height: 170px;
-      background: var(--black);
+      background: var(--loaderColor);
    }
 }
