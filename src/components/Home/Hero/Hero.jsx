@@ -2,17 +2,25 @@
 import React, { useEffect } from 'react';
 import './hero.scss';
 import Image from 'next/image';
+import gsap from 'gsap';
 
 export default function Hero() {
 
    useEffect(() => {
       let heroText = document.querySelector('.hero__wrapper .hero-inner__wrapper .content__wrapper');
       let heroTextHeight = heroText.getBoundingClientRect().height;
+      let renderWrapper = document.querySelector('.hero__wrapper .model-render__wrapper');
 
       if(heroTextHeight) {
          let loaderCenterLine = document.querySelector('.loader__wrapper .center__line');
          loaderCenterLine.style.minHeight = `${heroTextHeight + 10}px`
       }
+
+      gsap.to(renderWrapper, {
+         opacity: 1,
+         delay: 3,
+         duration: .5,
+      })
    }, [])
 
    return (
