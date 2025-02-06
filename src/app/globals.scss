@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+  font-family: 'FeatureItalic';
+  src: url('/fonts/FeatureItalic.otf') format("OpenType");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --font-primary: "Inter", sans-serif;
+  --font-italic: 'FeatureItalic';
+  --main-transition: all 300ms ease;
+}
+
+.lenis-container {
+  position: relative;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--black);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+}
+
+li {
+  list-style: none;
+}
+
+.section__paddings {
+  padding: 0 96px;
+
+  @media screen and (max-width: 990px) {
+    padding: 0 48px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 25px;
+  }
+}
+
+.text-gradient-color {
+  background: linear-gradient(180deg, #FFF 29.24%, #A2A2A2 92.4%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
