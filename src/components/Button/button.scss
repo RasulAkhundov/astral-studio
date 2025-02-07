@@ -30,8 +30,12 @@
          text-transform: uppercase;
          display: inline-block;
 
+         span {
+            display: inline-flex;
+         }
+
          .space {
-            display: inline-block;
+            display: inline-flex;
             width: 0.5em;
          }
       }
@@ -42,6 +46,7 @@
          left: 0;
 
          span {
+            display: inline-flex;
             transform: translateY(100%);
          }
       }

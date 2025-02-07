@@ -36,16 +36,16 @@ export default function Button({
             // Her harfi sırasıyla yukarıya hareket ettiriyoruz
             gsap.to(spans, {
                y: "-100%",
-               duration: 0.25,
-               ease: "ease",
+               duration: .5,
+               ease: 'expo',
                stagger: 0.05, // 0.1 saniye aralıkla her harf yukarı hareket edecek
             });
 
             // Hovered text'i yukarıya getiriyoruz
             gsap.to(hoveredText, {
                y: "0%",
-               duration: 0.25,
-               ease: "ease",
+               duration: .5,
+               ease: 'expo',
                stagger: 0.05,
             });
          });
@@ -54,16 +54,16 @@ export default function Button({
             // Her harfi sırasıyla yerine geri getiriyoruz
             gsap.to(spans, {
                y: "0%",
-               duration: 0.25,
-               ease: "ease",
+               duration: .5,
+               ease: 'expo',
                stagger: 0.05, // 0.1 saniye aralıkla her harf yerine geri gelecek
             });
 
             // Hovered text'i tekrar altta yapıyoruz
             gsap.to(hoveredText, {
                y: "100%",
-               duration: 0.25,
-               ease: "ease",
+               duration: .5,
+               ease: 'expo',
                stagger: 0.05,
             });
          });
