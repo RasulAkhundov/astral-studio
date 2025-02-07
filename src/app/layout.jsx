@@ -3,6 +3,7 @@ import './globals.scss';
 import './home.scss';
 import LenisProvider from '@/utils/LenisProvider';
 import Loader from '@/layouts/Loader/Loader';
+import Header from '@/layouts/Header/Header';
 
 export default function RootLayout({ children }) {
   return (
@@ -11,6 +12,8 @@ export default function RootLayout({ children }) {
         <LenisProvider>
           <Loader />
           <Navbar />
+          <Header />
+
           {children}
         </LenisProvider>
       </body>

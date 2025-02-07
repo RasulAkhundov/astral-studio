@@ -1,6 +1,6 @@
 .navbar__wrapper {
    width: 100%;
-   position: fixed;
+   position: absolute;
    top: 0;
    left: 0;
    padding-top: 28px;
@@ -21,6 +21,7 @@
          left: 50%;
          top: 0;
          transform: translateX(-50%);
+         cursor: pointer;
       }
 
       .navs__wrapper {
@@ -67,6 +68,45 @@
                font-weight: 500;
                letter-spacing: -0.42px;
                text-transform: uppercase;
+            }
+         }
+      }
+   }
+
+   @media screen and (max-width: 990px) {
+      .navbar-inner__wrapper {
+         height: 72px;
+
+         .logo__wrapper {
+            svg {
+               width: 72px;
+               height: auto;
+            }
+         }
+
+         .navs__wrapper {
+            .mail__box, .watch__box {
+               display: none;
+            }
+         }
+      }
+   }
+
+   @media screen and (max-width: 768px) {
+      padding-top: 53px;
+      
+      .navbar-inner__wrapper {
+         height: 55px;
+
+         .logo__wrapper {
+            svg {
+               width: 55px;
+            }
+         }
+
+         .navs__wrapper {
+            .mail__box, .watch__box {
+               display: none;
             }
          }
       }

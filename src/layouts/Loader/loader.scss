@@ -4,7 +4,7 @@
    left: 0;
    z-index: 99;
    width: 100%;
-   height: 100dvh;
+   height: 100vh;
    display: flex;
    flex-direction: column;
 
@@ -35,5 +35,19 @@
    .center__line {
       width: 100%;
       background: var(--loaderColor);
+   }
+
+   @media screen and (max-width: 990px) {
+      svg {
+         width: 72px;
+         height: auto;
+      }
+   }
+
+   @media screen and (max-width: 768px) {
+      svg {
+         top: 53px;
+         width: 55px;
+      }
    }
 }

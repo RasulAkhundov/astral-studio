@@ -31,46 +31,48 @@ export default function Button({
       const spans = gsap.utils.toArray(textLayer.querySelectorAll(".default__text span")); // Her harf için ayrı span elemanı alıyoruz
       const hoveredText = gsap.utils.toArray(textLayer.querySelectorAll(".hovered__text span")); // Hovered text için span'ı alıyoruz
 
-      button.addEventListener("mouseenter", () => {
-         // Her harfi sırasıyla yukarıya hareket ettiriyoruz
-         gsap.to(spans, {
-            y: "-100%",
-            duration: 0.25,
-            ease: "ease",
-            stagger: 0.05, // 0.1 saniye aralıkla her harf yukarı hareket edecek
+      if (window.innerWidth >= 1023) {
+         button.addEventListener("mouseenter", () => {
+            // Her harfi sırasıyla yukarıya hareket ettiriyoruz
+            gsap.to(spans, {
+               y: "-100%",
+               duration: 0.25,
+               ease: "ease",
+               stagger: 0.05, // 0.1 saniye aralıkla her harf yukarı hareket edecek
+            });
+
+            // Hovered text'i yukarıya getiriyoruz
+            gsap.to(hoveredText, {
+               y: "0%",
+               duration: 0.25,
+               ease: "ease",
+               stagger: 0.05,
+            });
          });
 
-         // Hovered text'i yukarıya getiriyoruz
-         gsap.to(hoveredText, {
-            y: "0%",
-            duration: 0.25,
-            ease: "ease",
-            stagger: 0.05,
-         });
-      });
+         button.addEventListener("mouseleave", () => {
+            // Her harfi sırasıyla yerine geri getiriyoruz
+            gsap.to(spans, {
+               y: "0%",
+               duration: 0.25,
+               ease: "ease",
+               stagger: 0.05, // 0.1 saniye aralıkla her harf yerine geri gelecek
+            });
 
-      button.addEventListener("mouseleave", () => {
-         // Her harfi sırasıyla yerine geri getiriyoruz
-         gsap.to(spans, {
-            y: "0%",
-            duration: 0.25,
-            ease: "ease",
-            stagger: 0.05, // 0.1 saniye aralıkla her harf yerine geri gelecek
+            // Hovered text'i tekrar altta yapıyoruz
+            gsap.to(hoveredText, {
+               y: "100%",
+               duration: 0.25,
+               ease: "ease",
+               stagger: 0.05,
+            });
          });
 
-         // Hovered text'i tekrar altta yapıyoruz
-         gsap.to(hoveredText, {
-            y: "100%",
-            duration: 0.25,
-            ease: "ease",
-            stagger: 0.05,
-         });
-      });
-
-      return () => {
-         button.removeEventListener("mouseenter", () => { });
-         button.removeEventListener("mouseleave", () => { });
-      };
+         return () => {
+            button.removeEventListener("mouseenter", () => { });
+            button.removeEventListener("mouseleave", () => { });
+         };
+      }
    }, []);
 
    return (

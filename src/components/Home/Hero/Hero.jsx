@@ -11,9 +11,9 @@ export default function Hero() {
       let heroTextHeight = heroText.getBoundingClientRect().height;
       let renderWrapper = document.querySelector('.hero__wrapper .model-render__wrapper');
 
-      if(heroTextHeight) {
+      if(heroText) {
          let loaderCenterLine = document.querySelector('.loader__wrapper .center__line');
-         loaderCenterLine.style.minHeight = `${heroTextHeight + 10}px`
+         loaderCenterLine.style.minHeight = `${heroTextHeight + 5}px`
       }
 
       gsap.to(renderWrapper, {

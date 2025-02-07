@@ -46,7 +46,7 @@ export default function Loader() {
       });
 
       gsap.to(loaderWrapper.current, {
-         delay: 3,
+         delay: 2.4,
          duration: 0,
          onComplete: () => {
             loaderWrapper.current.style.pointerEvents = "none";
