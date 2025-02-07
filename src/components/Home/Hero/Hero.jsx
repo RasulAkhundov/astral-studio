@@ -13,7 +13,7 @@ export default function Hero() {
 
       if(heroText) {
          let loaderCenterLine = document.querySelector('.loader__wrapper .center__line');
-         loaderCenterLine.style.minHeight = `${heroTextHeight + 5}px`
+         loaderCenterLine.style.minHeight = `${heroTextHeight + window.innerWidth >= 768 ? 10 : 5}px`;
       }
 
       gsap.to(renderWrapper, {
