@@ -30,9 +30,9 @@ export default function LenisProvider({ children }) {
     }
 
     const interval = setTimeout(() => {
-      document.querySelector('body').style.overflow = 'auto';
+      document.querySelector('body').style.overflowY = 'auto';
       lenis.start();
-    }, 2600);
+    }, 3000);
 
     return () => {
       lenis.destroy();
@@ -47,8 +47,10 @@ export default function LenisProvider({ children }) {
   useEffect(() => {
     if (lenisInstance) {
       lenisInstance.scrollTo(0, { immediate: true });
+      document.querySelector('body').style.overflowY = 'hidden';
     } else {
       window.scrollTo(0, 0);
+      document.querySelector('body').style.overflowY = 'hidden';
     }
   }, [pathname]);
 

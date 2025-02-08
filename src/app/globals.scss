@@ -27,7 +27,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--black);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  // overflow-y: hidden;
 }
 
 * {

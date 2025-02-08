@@ -10,7 +10,7 @@ import gsap from 'gsap';
 export default function Navbar() {
    // const lenis = useLenis();
    const logoWrapper = useRef(null);
-   const [time, setTime] = useState('02:53');
+   const [time, setTime] = useState(null);
 
    // useEffect(() => {
    //    if (lenis) {
