@@ -22,10 +22,16 @@
             flex-direction: column;
             position: relative;
 
-            svg {
+            .logo__wrapper {
                position: absolute;
                top: 36px;
                right: 0;
+               display: flex;
+               overflow: hidden;
+
+               svg {
+                  opacity: 0;
+               }
             }
 
             .text__layer {
@@ -87,7 +93,7 @@
             gap: 65px;
 
             .title__wrapper {
-               svg {
+               .logo__wrapper {
                   top: 20px;
                   width: 80px;
                }
@@ -115,7 +121,7 @@
             // height: auto;
 
             .title__wrapper {
-               svg {
+               .logo__wrapper {
                   top: 2px;
                   width: 60px;
                }

@@ -21,8 +21,6 @@ export default function LenisProvider({ children }) {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    lenis.stop();
-
     setLenisInstance(lenis);
 
     const raf = (time) => {
@@ -35,15 +33,9 @@ export default function LenisProvider({ children }) {
       window.history.scrollRestoration = 'manual';
     }
 
-    const interval = setTimeout(() => {
-      document.querySelector('body').style.overflow = 'auto';
-      lenis.start();
-    }, 2400);
-
     return () => {
       lenis.destroy();
       setLenisInstance(null);
-      clearInterval(interval)
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'auto';
       }

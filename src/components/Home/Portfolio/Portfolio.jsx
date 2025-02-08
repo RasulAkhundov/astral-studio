@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+import './portfolio.scss';
 
 export default function Portfolio() {
   return (
-    <div style={{ width: '100%', height: '100vh', background: 'white'}}>Portfolio</div>
+    <div className='portfolio__wrapper'>
+      <div className="line"></div>
+      <div className="portfolio-inner__wrapper">
+         
+      </div>
+    </div>
   )
 }

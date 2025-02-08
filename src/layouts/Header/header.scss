@@ -5,6 +5,7 @@
    top: 0;
    left: 0;
    z-index: 8;
+   pointer-events: none;
 
    .sticky__header {
       width: 100%;
@@ -14,6 +15,7 @@
       top: 0;
       padding-top: 24px;
       overflow: hidden;
+      pointer-events: all;
 
       .header__layer {
          // padding: 1px;

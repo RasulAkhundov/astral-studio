@@ -12,17 +12,18 @@ export default function Navbar() {
    const logoWrapper = useRef(null);
    const [time, setTime] = useState('02:53');
 
-   // useEffect(() => {
-   //    if (lenis) {
-   //       lenis.stop();
+   useEffect(() => {
+      if (lenis) {
+         lenis.stop();
 
-   //       const interval = setTimeout(() => {
-   //          lenis.start();
-   //       }, 2400);
+         const interval = setTimeout(() => {
+            document.querySelector('body').style.overflow = 'auto';
+            lenis.start();
+         }, 2800);
 
-   //       return () => clearInterval(interval);
-   //    }
-   // }, [lenis]);
+         return () => clearInterval(interval);
+      }
+   }, [lenis]);
 
    useEffect(() => {
       gsap.to(logoWrapper.current, {
