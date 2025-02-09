@@ -11,6 +11,7 @@ export function useLenis() {
 }
 
 export default function LenisProvider({ children }) {
+  const lenisRef = useRef(null);
   const [lenisInstance, setLenisInstance] = useState(null);
   const pathname = usePathname();
 
@@ -24,6 +25,7 @@ export default function LenisProvider({ children }) {
     lenis.stop();
 
     setLenisInstance(lenis);
+    lenisRef.current = lenis;
 
     const raf = (time) => {
       lenis.raf(time);
@@ -38,6 +40,7 @@ export default function LenisProvider({ children }) {
     return () => {
       lenis.destroy();
       setLenisInstance(null);
+      lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'auto';
       }

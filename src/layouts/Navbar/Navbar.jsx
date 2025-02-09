@@ -20,7 +20,7 @@ export default function Navbar() {
          const interval = setTimeout(() => {
             document.querySelector('body').style.overflowY = 'auto';
             lenis.start();
-         }, 2800);
+         }, 3000);
 
          return () => clearInterval(interval);
       }
