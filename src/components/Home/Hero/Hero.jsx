@@ -26,15 +26,7 @@ export default function Hero() {
    return (
       <div className="hero__wrapper section__paddings">
          <div className="model-render__wrapper">
-            {/* <Image
-                  src={'/images/hero-render.png'}
-                  width={335}
-                  height={332}
-                  quality={100}
-                  alt='astral'
-                  draggable={false}
-               /> */}
-            {/* <iframe src='https://my.spline.design/ai-c0da7bce2d50818ca5563cef28e6db5c/' frameBorder='0' width='100%' height='100%'></iframe> */}
+            <iframe src='https://my.spline.design/ai-c0da7bce2d50818ca5563cef28e6db5c/' frameBorder='0' width='100%' height='100%'></iframe>
          </div>
 
          <div className="hero-inner__wrapper">

@@ -1,5 +1,6 @@
 .our-mission__wrapper {
    width: 100%;
+   // overflow: hidden;
 
    .our-mission-inner__wrapper {
       max-width: 1440px;
@@ -114,10 +115,10 @@
    @media screen and (max-width: 768px) {
       .our-mission-inner__wrapper {
          // margin-bottom: 94px;
+         height: 100vh;
 
          .content__wrapper {
             gap: 40px;
-            padding-top: 155px;
             // height: auto;
 
             .title__wrapper {

@@ -14,7 +14,6 @@ export default function OurMission() {
       let descs = document.querySelectorAll('.our-mission__wrapper .content__wrapper .desc__wrapper span');
       let logo = document.querySelectorAll('.our-mission__wrapper .content__wrapper .title__wrapper svg');
 
-
       // İlk animasyon: Logo opak hale geliyor
       gsap.to(logo, {
          opacity: 1,
@@ -22,7 +21,8 @@ export default function OurMission() {
             trigger: mainWrapper,
             start: 'top center',
             end: 'top top',
-            scrub: true
+            scrub: true,
+            scroller: document.body
          }
       });
 
@@ -61,15 +61,33 @@ export default function OurMission() {
          });
       });
 
-      descs.forEach((desc, i) => {
-         gsap.to(desc, {
-            opacity: 1,
-            scrollTrigger: {
-               trigger: mainWrapper,
-               start: 'top top',
-               end: 'bottom bottom',
-               scrub: true
-            }
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 769px)', () => {
+         descs.forEach((desc, i) => {
+            gsap.to(desc, {
+               opacity: 1,
+               scrollTrigger: {
+                  trigger: mainWrapper,
+                  start: 'top top',
+                  end: 'bottom bottom',
+                  scrub: true
+               }
+            });
+         });
+      });
+
+      mm.add('(max-width: 768px)', () => {
+         descs.forEach((desc, i) => {
+            gsap.to(desc, {
+               opacity: 1,
+               scrollTrigger: {
+                  trigger: mainWrapper,
+                  start: 'top center',
+                  end: 'bottom bottom',
+                  scrub: true
+               }
+            });
          });
       });
 

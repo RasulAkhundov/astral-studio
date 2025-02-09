@@ -3,27 +3,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import './navbar.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-// import { useLenis } from '@/utils/LenisProvider';
+import { useLenis } from '@/utils/LenisProvider';
 import Button from '@/components/Button/Button';
 import gsap from 'gsap';
 
 export default function Navbar() {
-   // const lenis = useLenis();
+   const lenis = useLenis();
    const logoWrapper = useRef(null);
    const [time, setTime] = useState(null);
 
-   // useEffect(() => {
-   //    if (lenis) {
-   //       lenis.stop();
+   useEffect(() => {
+      if (lenis) {
+         document.querySelector('body').style.overflowY = 'hidden';
+         lenis.stop();
 
-   //       const interval = setTimeout(() => {
-   //          document.querySelector('body').style.overflow = 'auto';
-   //          lenis.start();
-   //       }, 2800);
+         const interval = setTimeout(() => {
+            document.querySelector('body').style.overflowY = 'auto';
+            lenis.start();
+         }, 2800);
 
-   //       return () => clearInterval(interval);
-   //    }
-   // }, [lenis]);
+         return () => clearInterval(interval);
+      }
+   }, [lenis]);
 
    useEffect(() => {
       gsap.to(logoWrapper.current, {
@@ -118,7 +119,7 @@ export default function Navbar() {
                   <span>{time}</span>
                </div>
 
-               <Button className='button__white'>
+               <Button className='button__white' speed={'0.05'}>
                   CONTACT
                </Button>
             </div>

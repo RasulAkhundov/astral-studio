@@ -10,6 +10,7 @@ export default function Button({
    href = null,
    target = "_self",
    disabled = false,
+   speed
 }) {
    const buttonRef = useRef(null);
    const textLayerRef = useRef(null);
@@ -38,7 +39,7 @@ export default function Button({
                y: "-100%",
                duration: .5,
                ease: 'expo',
-               stagger: 0.05, // 0.1 saniye aralıkla her harf yukarı hareket edecek
+               stagger: speed, // 0.1 saniye aralıkla her harf yukarı hareket edecek
             });
 
             // Hovered text'i yukarıya getiriyoruz
@@ -46,7 +47,7 @@ export default function Button({
                y: "0%",
                duration: .5,
                ease: 'expo',
-               stagger: 0.05,
+               stagger: speed,
             });
          });
 
@@ -56,7 +57,7 @@ export default function Button({
                y: "0%",
                duration: .5,
                ease: 'expo',
-               stagger: 0.05, // 0.1 saniye aralıkla her harf yerine geri gelecek
+               stagger: speed, // 0.1 saniye aralıkla her harf yerine geri gelecek
             });
 
             // Hovered text'i tekrar altta yapıyoruz
@@ -64,7 +65,7 @@ export default function Button({
                y: "100%",
                duration: .5,
                ease: 'expo',
-               stagger: 0.05,
+               stagger: speed,
             });
          });
 

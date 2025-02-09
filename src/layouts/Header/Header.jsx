@@ -1,9 +1,11 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import './header.scss';
+import { useLenis } from '@/utils/LenisProvider';
 import gsap from 'gsap';
 
 export default function Header() {
+   const lenis = useLenis();
    const headerUl = useRef(null);
    const stickyHeader = useRef(null);
 
@@ -24,7 +26,16 @@ export default function Header() {
          delay: 1.7,
          ease: 'ease'
       })
-   }, [])
+   }, []);
+
+   const handleScrollToTop = (target, e) => {
+      e.preventDefault(); // Sayfanın default davranışını engelle
+      if (lenis) {
+         lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
+      } else {
+         window.scrollTo({ target, behavior: 'smooth' }); // Lenis yoksa fallback olarak normal scroll
+      }
+   };
 
    return (
       <div className='sticky-header__wrapper'>
@@ -32,13 +43,13 @@ export default function Header() {
             <div className="header__layer">
                <ul ref={headerUl}>
                   <li>
-                     <span>PORTFOLIO</span>
+                     <span onClick={(e) => handleScrollToTop('.portfolio__wrapper', e)}>PORTFOLIO</span>
                   </li>
                   <li>
-                     <span>OUR PARTNERS</span>
+                     <span onClick={(e) => handleScrollToTop('.partners__wrapper', e)}>OUR PARTNERS</span>
                   </li>
                   <li>
-                     <span>CONTACT</span>
+                     <span onClick={(e) => handleScrollToTop('footer', e)}>CONTACT</span>
                   </li>
                </ul>
             </div>

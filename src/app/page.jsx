@@ -1,6 +1,8 @@
 import Hero from "@/components/Home/Hero/Hero";
 import OurMission from "@/components/Home/OurMission/OurMission";
+import Partners from "@/components/Home/Partners/Partners";
 import Portfolio from "@/components/Home/Portfolio/Portfolio";
+import Footer from "@/layouts/Footer/Footer";
 
 export default function Home() {
 
@@ -11,7 +13,10 @@ export default function Home() {
       <OurMission />
 
       <Portfolio />
-      <div style={{ width: '100%', height: '300vh' }}></div>
+
+      <Partners />
+
+      <Footer />
     </main>
   );
 }

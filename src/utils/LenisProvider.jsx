@@ -4,6 +4,12 @@ import Lenis from '@studio-freight/lenis';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
+const LenisContext = createContext(null);
+
+export function useLenis() {
+  return useContext(LenisContext);
+}
+
 export default function LenisProvider({ children }) {
   const [lenisInstance, setLenisInstance] = useState(null);
   const pathname = usePathname();
@@ -29,15 +35,9 @@ export default function LenisProvider({ children }) {
       window.history.scrollRestoration = 'manual';
     }
 
-    const interval = setTimeout(() => {
-      document.querySelector('body').style.overflowY = 'auto';
-      lenis.start();
-    }, 3000);
-
     return () => {
       lenis.destroy();
       setLenisInstance(null);
-      clearInterval(interval)
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'auto';
       }
@@ -54,5 +54,9 @@ export default function LenisProvider({ children }) {
     }
   }, [pathname]);
 
-  return children;
+  return (
+    <LenisContext.Provider value={lenisInstance}>
+      {children}
+    </LenisContext.Provider>
+  );
 }
