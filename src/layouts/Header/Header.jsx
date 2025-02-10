@@ -5,7 +5,7 @@ import { useLenis } from '@/utils/LenisProvider';
 import gsap from 'gsap';
 
 export default function Header() {
-   // const lenis = useLenis();
+   const lenis = useLenis();
    const headerUl = useRef(null);
    const stickyHeader = useRef(null);
 
@@ -28,14 +28,14 @@ export default function Header() {
       })
    }, []);
 
-   // const handleScrollToTop = (target, e) => {
-   //    e.preventDefault(); // Sayfanın default davranışını engelle
-   //    if (lenis) {
-   //       lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
-   //    } else {
-   //       window.scrollTo({ target, behavior: 'smooth' }); // Lenis yoksa fallback olarak normal scroll
-   //    }
-   // };
+   const handleScrollToTop = (target, e) => {
+      e.preventDefault(); // Sayfanın default davranışını engelle
+      if (lenis) {
+         lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
+      } else {
+         window.scrollTo({ target, behavior: 'smooth' }); // Lenis yoksa fallback olarak normal scroll
+      }
+   };
 
    return (
       <div className='sticky-header__wrapper'>

@@ -1,20 +1,29 @@
 'use client';
 
 import Lenis from '@studio-freight/lenis';
-import { useEffect, useRef } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+
+const LenisContext = createContext(null);
+
+export function useLenis() {
+  return useContext(LenisContext);
+}
 
 export default function LenisProvider({ children }) {
   const lenisRef = useRef(null);
+  const [lenisInstance, setLenisInstance] = useState(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    // Lenis'i başlat
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
+
+    setLenisInstance(lenis);
+    lenis.stop();
 
     lenisRef.current = lenis;
 
@@ -24,12 +33,12 @@ export default function LenisProvider({ children }) {
     };
     requestAnimationFrame(raf);
 
-    // Tarayıcı varsayılan scroll yönetimini devre dışı bırak
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
 
     return () => {
+      setLenisInstance(null);
       lenis.destroy();
       lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
@@ -39,13 +48,18 @@ export default function LenisProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // Sayfa değişimlerinde scroll sıfırla
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
+    if (lenisInstance) {
+      lenisInstance.scrollTo(0, { immediate: true });
+      document.querySelector('body').style.overflowY = 'hidden';
     } else {
       window.scrollTo(0, 0);
+      document.querySelector('body').style.overflowY = 'hidden';
     }
   }, [pathname]);
 
-  return children;
+  return (
+    <LenisContext.Provider value={lenisInstance}>
+      {children}
+    </LenisContext.Provider>
+  );
 }
