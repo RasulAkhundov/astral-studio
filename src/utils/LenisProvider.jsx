@@ -16,19 +16,15 @@ export default function LenisProvider({ children }) {
   const [lenisInstance, setLenisInstance] = useState(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    setLenisInstance(lenis);
-
+    // lenis.stop();
     lenisRef.current = lenis;
+    setLenisInstance(lenis);
 
     const raf = (time) => {
       lenis.raf(time);
@@ -36,14 +32,14 @@ export default function LenisProvider({ children }) {
     };
     requestAnimationFrame(raf);
 
-    // if ('scrollRestoration' in window.history) {
-    //   window.history.scrollRestoration = 'manual';
-    // }
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
 
     return () => {
-      setLenisInstance(null);
       lenis.destroy();
       lenisRef.current = null;
+      setLenisInstance(null);
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'auto';
       }
@@ -52,19 +48,16 @@ export default function LenisProvider({ children }) {
 
   useEffect(() => {
     if (lenisRef.current) {
-      setTimeout(() => {
-        lenisRef.current.scrollTo(0, { immediate: true });
-      }, 50);
+      lenisRef.current.scrollTo(0, { immediate: true });
     } else {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 50);
+      window.scrollTo(0, 0);
     }
   }, [pathname]);
 
-  return (
-    <LenisContext.Provider value={lenisInstance}>
-      {children}
-    </LenisContext.Provider>
-  );
+  // return (
+  //   <LenisContext.Provider value={lenisInstance}>
+  //     {children}
+  //   </LenisContext.Provider>
+  // );
+  return children
 }
