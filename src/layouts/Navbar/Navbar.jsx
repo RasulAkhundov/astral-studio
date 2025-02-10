@@ -14,11 +14,11 @@ export default function Navbar() {
 
    useEffect(() => {
       if (lenis) {
-         document.querySelector('body').style.overflowY = 'hidden';
+         // document.querySelector('body').style.overflowY = 'hidden';
          lenis.stop();
 
          const interval = setTimeout(() => {
-            document.querySelector('body').style.overflowY = 'auto';
+            // document.querySelector('body').style.overflowY = 'auto';
             lenis.start();
          }, 3000);
 

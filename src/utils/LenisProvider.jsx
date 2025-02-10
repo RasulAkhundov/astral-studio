@@ -23,6 +23,8 @@ export default function LenisProvider({ children }) {
     });
 
     setLenisInstance(lenis);
+    lenis.stop();
+
     lenisRef.current = lenis;
 
     const raf = (time) => {
@@ -36,6 +38,7 @@ export default function LenisProvider({ children }) {
     }
 
     return () => {
+      setLenisInstance(null);
       lenis.destroy();
       lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
@@ -45,20 +48,13 @@ export default function LenisProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    const lenis = lenisRef.current;
-    
-    if (lenis) {
-      // Sayfa değişimlerinde scroll'u sıfırla
-      lenis.scrollTo(0, { immediate: true });
-      // Lenis'in internal scroll değerini manuel sıfırla
-      lenis.__isLocked = false;
-      lenis.targetScroll = 0;
-      lenis.animatedScroll = 0;
-      // lenis.actualScroll = 0;
+    if (lenisInstance) {
+      lenisInstance.scrollTo(0, { immediate: true });
+      // document.querySelector('body').style.overflowY = 'hidden';
+    } else {
+      window.scrollTo(0, 0);
+      // document.querySelector('body').style.overflowY = 'hidden';
     }
-    
-    // Güvenli olması için native scroll'u da sıfırla
-    window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
