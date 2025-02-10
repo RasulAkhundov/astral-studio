@@ -16,6 +16,7 @@ export default function LenisProvider({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    console.log("Lenis yükleniyor...");
     if (typeof window !== 'undefined') {
       const lenis = new Lenis({
         duration: 1.2,
@@ -25,8 +26,9 @@ export default function LenisProvider({ children }) {
   
       setLenisInstance(lenis);
       lenis.stop();
-  
       lenisRef.current = lenis;
+  
+      console.log("Lenis başarıyla yüklendi!", lenis);
   
       const raf = (time) => {
         lenis.raf(time);
@@ -36,10 +38,12 @@ export default function LenisProvider({ children }) {
       requestAnimationFrame(raf);
   
       if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'manual'; // ← DELETE yerine bunu kullan
+        window.history.scrollRestoration = 'manual';
+        console.log("Scroll restoration manuel moda alındı.");
       }
   
       return () => {
+        console.log("Lenis temizleniyor...");
         lenis.stop();
         lenis.destroy();
         lenisRef.current = null;
@@ -47,6 +51,7 @@ export default function LenisProvider({ children }) {
   
         if ('scrollRestoration' in window.history) {
           window.history.scrollRestoration = 'auto';
+          console.log("Scroll restoration tekrar auto yapıldı.");
         }
       };
     }
