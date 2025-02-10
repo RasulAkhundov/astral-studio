@@ -52,9 +52,13 @@ export default function LenisProvider({ children }) {
 
   useEffect(() => {
     if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
+      setTimeout(() => {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      }, 50);
     } else {
-      window.scrollTo(0, 0);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 50);
     }
   }, [pathname]);
 
