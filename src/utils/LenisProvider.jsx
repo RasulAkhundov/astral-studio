@@ -57,13 +57,17 @@ export default function LenisProvider({ children }) {
     }
   }, []);
 
-  useLayoutEffect(() => {
-    if (lenisInstance) {
-      lenisInstance.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-    document.querySelector('body').style.overflowY = 'hidden';
+  useEffect(() => {
+    console.log("Pathname değişti:", pathname);
+  
+    setTimeout(() => {
+      if (lenisInstance) {
+        lenisInstance.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+      document.querySelector('body').style.overflowY = 'hidden';
+    }, 100); // 100ms gecikme ekledik
   }, [pathname]);
 
 
