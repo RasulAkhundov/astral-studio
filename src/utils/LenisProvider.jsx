@@ -1,7 +1,7 @@
 'use client';
 
 import Lenis from '@studio-freight/lenis';
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const LenisContext = createContext(null);
