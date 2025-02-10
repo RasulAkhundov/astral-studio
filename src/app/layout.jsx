@@ -1,3 +1,4 @@
+'use client';
 import Navbar from '@/layouts/Navbar/Navbar';
 import './globals.scss';
 import './home.scss';

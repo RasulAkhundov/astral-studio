@@ -1,3 +1,4 @@
+'use client';
 import Hero from "@/components/Home/Hero/Hero";
 import OurMission from "@/components/Home/OurMission/OurMission";
 import Partners from "@/components/Home/Partners/Partners";
@@ -9,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="main__container">
-      {/* <Header /> */}
+      <Header />
 
       <Hero />
 
