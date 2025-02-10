@@ -22,29 +22,29 @@ export default function LenisProvider({ children }) {
         smooth: true,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
-
+  
       setLenisInstance(lenis);
       lenis.stop();
-
+  
       lenisRef.current = lenis;
-
+  
       const raf = (time) => {
         lenis.raf(time);
         requestAnimationFrame(raf);
       };
-
+  
       requestAnimationFrame(raf);
-
+  
       if ('scrollRestoration' in window.history) {
-        delete window.history.scrollRestoration; // <-- Buraya ekledim!
+        window.history.scrollRestoration = 'manual'; // ← DELETE yerine bunu kullan
       }
-
+  
       return () => {
         lenis.stop();
         lenis.destroy();
         lenisRef.current = null;
         setLenisInstance(null);
-
+  
         if ('scrollRestoration' in window.history) {
           window.history.scrollRestoration = 'auto';
         }
@@ -52,17 +52,13 @@ export default function LenisProvider({ children }) {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (lenisInstance) {
-      setTimeout(() => {
-        lenisInstance.scrollTo(0, { immediate: true });
-      }, 50); // 50ms delay
+      lenisInstance.scrollTo(0, { immediate: true });
     } else {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 50);
+      window.scrollTo(0, 0);
     }
-    // document.querySelector('body').style.overflowY = 'hidden';
+    document.querySelector('body').style.overflowY = 'hidden';
   }, [pathname]);
 
 
