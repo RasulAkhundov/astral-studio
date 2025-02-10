@@ -32,8 +32,8 @@ export default function LenisProvider({ children }) {
     };
     requestAnimationFrame(raf);
 
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
     }
 
     return () => {

@@ -12,19 +12,19 @@ export default function Navbar() {
    const logoWrapper = useRef(null);
    const [time, setTime] = useState(null);
 
-   useEffect(() => {
-      if (lenis) {
-         // document.querySelector('body').style.overflowY = 'hidden';
-         lenis.stop();
+   // useEffect(() => {
+   //    if (lenis) {
+   //       // document.querySelector('body').style.overflowY = 'hidden';
+   //       lenis.stop();
 
-         const interval = setTimeout(() => {
-            // document.querySelector('body').style.overflowY = 'auto';
-            lenis.start();
-         }, 3000);
+   //       const interval = setTimeout(() => {
+   //          // document.querySelector('body').style.overflowY = 'auto';
+   //          lenis.start();
+   //       }, 3000);
 
-         return () => clearInterval(interval);
-      }
-   }, [lenis]);
+   //       return () => clearInterval(interval);
+   //    }
+   // }, [lenis]);
 
    useEffect(() => {
       gsap.to(logoWrapper.current, {
