@@ -16,46 +16,55 @@ export default function LenisProvider({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      smooth: true,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
+    if (typeof window !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.2,
+        smooth: true,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
 
-    setLenisInstance(lenis);
-    lenis.stop();
+      setLenisInstance(lenis);
+      lenis.stop();
 
-    lenisRef.current = lenis;
+      lenisRef.current = lenis;
 
-    const raf = (time) => {
-      lenis.raf(time);
+      const raf = (time) => {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      };
+
       requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
 
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-
-    return () => {
-      setLenisInstance(null);
-      lenis.destroy();
-      lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'auto';
+        delete window.history.scrollRestoration; // <-- Buraya ekledim!
       }
-    };
+
+      return () => {
+        lenis.stop();
+        lenis.destroy();
+        lenisRef.current = null;
+        setLenisInstance(null);
+
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'auto';
+        }
+      };
+    }
   }, []);
 
   useEffect(() => {
     if (lenisInstance) {
-      lenisInstance.scrollTo(0, { immediate: true });
-      document.querySelector('body').style.overflowY = 'hidden';
+      setTimeout(() => {
+        lenisInstance.scrollTo(0, { immediate: true });
+      }, 50); // 50ms delay
     } else {
-      window.scrollTo(0, 0);
-      document.querySelector('body').style.overflowY = 'hidden';
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 50);
     }
+    document.querySelector('body').style.overflowY = 'hidden';
   }, [pathname]);
+
 
   return (
     <LenisContext.Provider value={lenisInstance}>
