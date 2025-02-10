@@ -9,7 +9,7 @@ import Header from "@/layouts/Header/Header";
 export default function Home() {
 
   return (
-    <main className="main__container">
+    <div className="main__container">
       <Header />
 
       <Hero />
@@ -21,6 +21,6 @@ export default function Home() {
       <Partners />
 
       <Footer />
-    </main>
+    </div>
   );
 }
