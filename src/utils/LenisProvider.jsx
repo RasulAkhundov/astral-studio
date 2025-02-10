@@ -12,10 +12,14 @@ export function useLenis() {
 
 export default function LenisProvider({ children }) {
   const lenisRef = useRef(null);
-  const [lenisInstance, setLenisInstance] = useState(null);
   const pathname = usePathname();
+  const [lenisInstance, setLenisInstance] = useState(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
@@ -23,7 +27,6 @@ export default function LenisProvider({ children }) {
     });
 
     setLenisInstance(lenis);
-    // lenis.stop();
 
     lenisRef.current = lenis;
 
@@ -33,17 +36,15 @@ export default function LenisProvider({ children }) {
     };
     requestAnimationFrame(raf);
 
-    if ('scrollRestoration' in window.history) {
-      console.log('manual');
-      window.history.scrollRestoration = 'manual';
-    }
+    // if ('scrollRestoration' in window.history) {
+    //   window.history.scrollRestoration = 'manual';
+    // }
 
     return () => {
       setLenisInstance(null);
       lenis.destroy();
       lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
-        console.log('test');
         window.history.scrollRestoration = 'auto';
       }
     };
