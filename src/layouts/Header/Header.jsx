@@ -5,7 +5,7 @@ import { useLenis } from '@/utils/LenisProvider';
 import gsap from 'gsap';
 
 export default function Header() {
-   // const lenis = useLenis();
+   const lenis = useLenis();
    const headerUl = useRef(null);
    const stickyHeader = useRef(null);
 
