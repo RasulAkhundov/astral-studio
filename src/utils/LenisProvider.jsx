@@ -1,7 +1,7 @@
 'use client';
 
 import Lenis from '@studio-freight/lenis';
-import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const LenisContext = createContext(null);
@@ -16,60 +16,50 @@ export default function LenisProvider({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log("Lenis yükleniyor...");
-    if (typeof window !== 'undefined') {
-      const lenis = new Lenis({
-        duration: 1.2,
-        smooth: true,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-  
-      setLenisInstance(lenis);
-      lenis.stop();
-      lenisRef.current = lenis;
-  
-      console.log("Lenis başarıyla yüklendi!", lenis);
-  
-      const raf = (time) => {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      };
-  
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    setLenisInstance(lenis);
+    lenisRef.current = lenis;
+
+    const raf = (time) => {
+      lenis.raf(time);
       requestAnimationFrame(raf);
-  
-      if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'manual';
-        console.log("Scroll restoration manuel moda alındı.");
-      }
-  
-      return () => {
-        console.log("Lenis temizleniyor...");
-        lenis.stop();
-        lenis.destroy();
-        lenisRef.current = null;
-        setLenisInstance(null);
-  
-        if ('scrollRestoration' in window.history) {
-          window.history.scrollRestoration = 'auto';
-          console.log("Scroll restoration tekrar auto yapıldı.");
-        }
-      };
+    };
+    requestAnimationFrame(raf);
+
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
     }
+
+    return () => {
+      lenis.destroy();
+      lenisRef.current = null;
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
   }, []);
 
   useEffect(() => {
-    console.log("Pathname değişti:", pathname);
-  
-    setTimeout(() => {
-      if (lenisInstance) {
-        lenisInstance.scrollTo(0, { immediate: true });
-      } else {
-        window.scrollTo(0, 0);
-      }
-      document.querySelector('body').style.overflowY = 'hidden';
-    }, 100); // 100ms gecikme ekledik
+    const lenis = lenisRef.current;
+    
+    if (lenis) {
+      // Sayfa değişimlerinde scroll'u sıfırla
+      lenis.scrollTo(0, { immediate: true });
+      // Lenis'in internal scroll değerini manuel sıfırla
+      lenis.__isLocked = false;
+      lenis.targetScroll = 0;
+      lenis.animatedScroll = 0;
+      // lenis.actualScroll = 0;
+    }
+    
+    // Güvenli olması için native scroll'u da sıfırla
+    window.scrollTo(0, 0);
   }, [pathname]);
-
 
   return (
     <LenisContext.Provider value={lenisInstance}>
