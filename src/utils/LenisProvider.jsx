@@ -4,16 +4,16 @@ import Lenis from '@studio-freight/lenis';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const LenisContext = createContext(null);
+// const LenisContext = createContext(null);
 
-export function useLenis() {
-  return useContext(LenisContext);
-}
+// export function useLenis() {
+//   return useContext(LenisContext);
+// }
 
 export default function LenisProvider({ children }) {
   const lenisRef = useRef(null);
   const pathname = usePathname();
-  const [lenisInstance, setLenisInstance] = useState(null);
+  // const [lenisInstance, setLenisInstance] = useState(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -24,7 +24,7 @@ export default function LenisProvider({ children }) {
 
     // lenis.stop();
     lenisRef.current = lenis;
-    setLenisInstance(lenis);
+    // setLenisInstance(lenis);
 
     const raf = (time) => {
       lenis.raf(time);
@@ -39,7 +39,7 @@ export default function LenisProvider({ children }) {
     return () => {
       lenis.destroy();
       lenisRef.current = null;
-      setLenisInstance(null);
+      // setLenisInstance(null);
       if ('scrollRestoration' in window.history) {
         window.history.scrollRestoration = 'auto';
       }
@@ -54,9 +54,10 @@ export default function LenisProvider({ children }) {
     }
   }, []);
 
-  return (
-    <LenisContext.Provider value={lenisInstance}>
-      {children}
-    </LenisContext.Provider>
-  );
+  // return (
+  //   <LenisContext.Provider value={lenisInstance}>
+  //     {children}
+  //   </LenisContext.Provider>
+  // );
+  return children
 }
