@@ -34,6 +34,7 @@ export default function LenisProvider({ children }) {
     requestAnimationFrame(raf);
 
     if ('scrollRestoration' in window.history) {
+      console.log('manual');
       window.history.scrollRestoration = 'manual';
     }
 
@@ -42,6 +43,7 @@ export default function LenisProvider({ children }) {
       lenis.destroy();
       lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
+        console.log('test');
         window.history.scrollRestoration = 'auto';
       }
     };
