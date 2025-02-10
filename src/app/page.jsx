@@ -1,4 +1,3 @@
-'use client';
 import Hero from "@/components/Home/Hero/Hero";
 import OurMission from "@/components/Home/OurMission/OurMission";
 import Partners from "@/components/Home/Partners/Partners";
