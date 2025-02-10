@@ -5,15 +5,8 @@ import Partners from "@/components/Home/Partners/Partners";
 import Portfolio from "@/components/Home/Portfolio/Portfolio";
 import Footer from "@/layouts/Footer/Footer";
 import Header from "@/layouts/Header/Header";
-import { useEffect } from "react";
 
 export default function Home() {
-
-  useEffect(() => {
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-  }, [])
 
   return (
     <div className="main__container">
