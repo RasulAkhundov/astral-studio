@@ -62,7 +62,7 @@ export default function LenisProvider({ children }) {
         window.scrollTo(0, 0);
       }, 50);
     }
-    document.querySelector('body').style.overflowY = 'hidden';
+    // document.querySelector('body').style.overflowY = 'hidden';
   }, [pathname]);
 
 
