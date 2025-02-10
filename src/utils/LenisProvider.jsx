@@ -23,7 +23,7 @@ export default function LenisProvider({ children }) {
     });
 
     setLenisInstance(lenis);
-    lenis.stop();
+    // lenis.stop();
 
     lenisRef.current = lenis;
 
@@ -42,18 +42,16 @@ export default function LenisProvider({ children }) {
       lenis.destroy();
       lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'manual';
+        window.history.scrollRestoration = 'auto';
       }
     };
   }, []);
 
   useEffect(() => {
-    if (lenisInstance) {
-      lenisInstance.scrollTo(0, { immediate: true });
-      // document.querySelector('body').style.overflowY = 'hidden';
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo(0, 0);
-      // document.querySelector('body').style.overflowY = 'hidden';
     }
   }, [pathname]);
 
