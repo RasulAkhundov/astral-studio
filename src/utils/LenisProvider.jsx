@@ -54,10 +54,9 @@ export default function LenisProvider({ children }) {
     }
   }, [pathname]);
 
-  // return (
-  //   <LenisContext.Provider value={lenisInstance}>
-  //     {children}
-  //   </LenisContext.Provider>
-  // );
-  return children
+  return (
+    <LenisContext.Provider value={lenisInstance}>
+      {children}
+    </LenisContext.Provider>
+  );
 }
