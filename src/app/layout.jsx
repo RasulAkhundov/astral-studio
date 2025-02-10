@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
         <LenisProvider>
           <Loader />
           <Navbar />
-          <Header />
+          {/* <Header /> */}
 
           {children}
         </LenisProvider>
