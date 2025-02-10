@@ -42,7 +42,7 @@ export default function LenisProvider({ children }) {
       lenis.destroy();
       lenisRef.current = null;
       if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'auto';
+        window.history.scrollRestoration = 'manual';
       }
     };
   }, []);
