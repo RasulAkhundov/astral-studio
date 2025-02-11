@@ -50,4 +50,10 @@
          width: 55px;
       }
    }
+
+   @media screen and (max-width: 600px) {
+      .top__line {
+         min-height: 400px;
+      }
+   }
 }

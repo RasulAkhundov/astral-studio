@@ -32,7 +32,7 @@ export default function Footer() {
          y: 0,
          scrollTrigger: {
             trigger: titles,
-            start: "top bottom",
+            start: "bottom bottom",
             end: 'max max',
             scrub: true
          }

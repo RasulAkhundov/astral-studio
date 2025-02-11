@@ -69,13 +69,17 @@
    }
 
    @media screen and (max-width: 600px) {
+      height: 550px;
+
       .model-render__wrapper {
          height: 450px;
-         top: 100px;
+         top: 50px;
       }
 
       .hero-inner__wrapper {
          .content__wrapper {
+            top: 400px;
+
             .text__wrapper {
                font-size: 26px;
                line-height: 35px;

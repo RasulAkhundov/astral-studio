@@ -3,6 +3,8 @@ footer {
    padding-block: 74px 60px !important;
    background: var(--white);
    position: relative;
+   clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+   overflow: hidden;
 
    .footer-inner__wrapper {
       width: 100%;
