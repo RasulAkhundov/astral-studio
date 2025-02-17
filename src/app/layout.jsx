@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
         <LenisProvider>
           <Loader />
           <Navbar />
-          <VideoModal />
+          {/* <VideoModal /> */}
 
           {children}
         </LenisProvider>

@@ -3,18 +3,17 @@ import React, { useEffect, useState } from 'react';
 import './portfolio.scss';
 import Image from 'next/image';
 import { useLenis } from '@/utils/LenisProvider';
+import VideoModal from '@/layouts/VideoModal/VideoModal';
 
 export default function Portfolio() {
   const lenis = useLenis();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpen = () => {
-    let videoModal = document.querySelector('.video-modal__wrapper');
+    setIsModalOpen(true);
 
-    if (lenis) {
-      videoModal.classList.add('show');
-      lenis.stop();
-    }
-  }
+    let videoModal = document.querySelector('.video-modal__wrapper');
+  };
 
   return (
     <div className='portfolio__wrapper'>
@@ -32,6 +31,8 @@ export default function Portfolio() {
           <path fillRule="evenodd" clipRule="evenodd" d="M50 101.134C77.6142 101.134 100 78.6881 100 51C100 23.312 77.6142 0.866333 50 0.866333C22.3858 0.866333 0 23.312 0 51C0 78.6881 22.3858 101.134 50 101.134ZM39.5263 69.6579L71.1053 51.377L39.5263 33.0961V69.6579Z" fill="white" />
         </svg>
       </div>
+
+      {isModalOpen && <VideoModal setIsModalOpen={setIsModalOpen} />} {/* Modal Aç */}
     </div>
-  )
+  );
 }
