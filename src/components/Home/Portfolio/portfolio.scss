@@ -2,7 +2,6 @@
    width: 100%;
    position: relative;
    background: var(--black);
-   z-index: 99999;
    display: flex;
    flex-direction: column;
 
@@ -60,7 +59,7 @@
       background: rgba(0, 0, 0, .8);
       opacity: 0;
       pointer-events: none;
-      transition: all 1500ms ease;
+      transition: all 300ms ease;
 
       .close__icon {
          position: absolute;

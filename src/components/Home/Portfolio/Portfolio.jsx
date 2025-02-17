@@ -16,7 +16,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className='portfolio__wrapper'>
+    <div className='portfolio__wrapper' style={{ zIndex: isModalOpen ? 99999 : 2 }}>
       <div className="line"></div>
       <div className="portfolio-inner__wrapper">
         <Image
