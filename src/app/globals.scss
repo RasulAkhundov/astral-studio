@@ -64,3 +64,8 @@ li {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.video__wrapper iframe .vp-center #player {
+  max-width: 100% !important;
+  width: 100% !important;
+}

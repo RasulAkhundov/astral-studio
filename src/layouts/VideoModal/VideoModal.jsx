@@ -43,13 +43,13 @@ export default function VideoModal({ setIsModalOpen }) {
    };
 
    return (
-      <div className='video-modal__wrapper show'>
-         <div className="close__icon" onClick={handleClose}>
+      <div className='video-modal__wrapper show' onClick={handleClose}>
+         <div className="close__icon">
             <div className="arrow"></div>
             <div className="arrow"></div>
          </div>
 
-         <div className="video__wrapper">
+         <div className="video__wrapper" onClick={(e) => e.stopPropagation()}>
             <iframe 
                ref={iframeRef}
                src="https://player.vimeo.com/video/1057306776?h=5b3c302210&autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" 
