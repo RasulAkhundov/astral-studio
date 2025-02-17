@@ -51,6 +51,15 @@ footer {
                }
             }
          }
+
+         .button__wrapper {
+            padding: 15px 30px;
+            border-radius: 10px;
+            
+            span {
+               font-size: 20px;
+            }
+         }
       }
 
       .footer__bottom {
@@ -131,6 +140,15 @@ footer {
                      height: 30px;
                      width: 45px;
                   }
+               }
+            }
+
+            .button__wrapper {
+               padding: 8px 16px;
+               border-radius: 5px;
+
+               span {
+                  font-size: 12px;
                }
             }
          }

@@ -132,7 +132,7 @@ export default function OurMission() {
                      <h2>OUR</h2>
                   </div>
                   <div className="text__layer">
-                     <h2>MISSION...</h2>
+                     <h2 className='title-2'>MISSION...</h2>
                   </div>
                </div>
 

@@ -43,10 +43,21 @@
                h2 {
                   font-size: 180px;
                   line-height: 200px;
-                  color: var(--white);
+                  // color: var(--white);
                   letter-spacing: -5.4px;
                   font-weight: 900;
                   transform: translateY(100%);
+                  background: linear-gradient(122deg, #FDF5A6 10.69%, #FD6E50 76.78%, #E82C69 120.83%, #C32EA2 164.89%, #7757D1 230.98%);
+                  background-clip: text;
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+               }
+
+               .title-2 {
+                  background: linear-gradient(124deg, #FDF5A6 -19.17%, #FD6E50 11.55%, #E82C69 32.03%, #C32EA2 52.51%, #7757D1 83.23%);
+                  background-clip: text;
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
                }
 
                @media screen and (max-width: 1145px) {
