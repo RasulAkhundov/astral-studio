@@ -10,14 +10,14 @@ export default function Header() {
    const stickyHeader = useRef(null);
 
    useEffect(() => {
-      let heroText = document.querySelector('.hero__wrapper .hero-inner__wrapper .content__wrapper');
-      let heroTextHeight = heroText.getBoundingClientRect().height;
-      let heroTextTop = heroText.getBoundingClientRect().top;
-      let headerPaddingTop = window.innerWidth >= 768 ? 34 : 30;
+      // let heroText = document.querySelector('.hero__wrapper .hero-inner__wrapper .content__wrapper');
+      // let heroTextHeight = heroText.getBoundingClientRect().height;
+      // let heroTextTop = heroText.getBoundingClientRect().top;
+      // let headerPaddingTop = window.innerWidth >= 768 ? 34 : 30;
 
-      if(heroText) {
-         stickyHeader.current.style.marginTop = `${heroTextHeight + heroTextTop - headerPaddingTop}px`;
-      }
+      // if(heroText) {
+      //    stickyHeader.current.style.marginTop = `${heroTextHeight + heroTextTop - headerPaddingTop}px`;
+      // }
 
       gsap.to(headerUl.current, {
          y: 0,

@@ -10,21 +10,33 @@ import gsap from 'gsap';
 export default function Navbar() {
    const lenis = useLenis();
    const logoWrapper = useRef(null);
-   const [time, setTime] = useState(null);
+   // const [time, setTime] = useState(null);
+   const [menuActive, setMenuActive] = useState(false);
 
    useEffect(() => {
       if (lenis) {
-         // document.querySelector('body').style.overflowY = 'hidden';
          lenis.stop();
 
          const interval = setTimeout(() => {
-            // document.querySelector('body').style.overflowY = 'auto';
             lenis.start();
          }, 2800);
 
          return () => clearInterval(interval);
       }
    }, [lenis]);
+
+   useEffect(() => {
+      if (lenis) {
+         if (menuActive) {
+            lenis.scrollTo(0, { immediate: true });
+            lenis.stop();
+         } else {
+            setTimeout(() => {
+               lenis.start();
+            }, [250]);
+         }
+      }
+   }, [menuActive])
 
    useEffect(() => {
       gsap.to(logoWrapper.current, {
@@ -36,23 +48,22 @@ export default function Navbar() {
       })
    }, []);
 
-   useEffect(() => {
-      const interval = setInterval(() => {
-         const now = new Date();
-         const options = {
-            timeZone: "Asia/Baku",
-            hour: "2-digit",
-            minute: "2-digit",
-            // second: "2-digit",
-            hour12: true,
-         };
-         const formattedTime = new Intl.DateTimeFormat("en-US", options).format(now);
+   // useEffect(() => {
+   //    const interval = setInterval(() => {
+   //       const now = new Date();
+   //       const options = {
+   //          timeZone: "Asia/Baku",
+   //          hour: "2-digit",
+   //          minute: "2-digit",
+   //          hour12: true,
+   //       };
+   //       const formattedTime = new Intl.DateTimeFormat("en-US", options).format(now);
 
-         setTime(`${formattedTime}`);
-      }, 1000);
+   //       setTime(`${formattedTime}`);
+   //    }, 1000);
 
-      return () => clearInterval(interval);
-   }, []);
+   //    return () => clearInterval(interval);
+   // }, []);
 
    const handleScrollToTop = (e) => {
       e.preventDefault(); // Sayfanın default davranışını engelle
@@ -63,9 +74,18 @@ export default function Navbar() {
       }
    };
 
+   const menuScrollTarget = (target) => {
+      setMenuActive(false);
+      if (lenis) {
+         setTimeout(() => {
+            lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
+         }, [300]);
+      }
+   }
+
    return (
       <div className='navbar__wrapper section__paddings'>
-         <div className="navbar-inner__wrapper">
+         <div className={`navbar-inner__wrapper ${menuActive ? 'open' : ''}`}>
             <div ref={logoWrapper} className="logo__wrapper" onClick={handleScrollToTop}>
                <svg width="90" height="91" viewBox="0 0 90 91" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_99_24)">
@@ -115,13 +135,43 @@ export default function Navbar() {
                   <span>hello@astralstudios.com</span>
                </div>
 
-               <div className="watch__box">
+               {/* <div className="watch__box">
                   <span>{time}</span>
                </div>
 
                <Button className='button__white' speed={'0.05'}>
                   CONTACT
-               </Button>
+               </Button> */}
+
+               <div className={`burger__btn ${menuActive ? 'open' : ''}`} onClick={() => setMenuActive(!menuActive)}>
+                  <div className="line top"></div>
+                  <div className="line middle"></div>
+                  <div className="line bottom"></div>
+               </div>
+            </div>
+         </div>
+
+         <div className={`menu__wrapper ${menuActive ? 'open' : ''}`}>
+            <div className="menu-inner__wrapper">
+               <div className="menu-content__wrapper">
+                  <div className="text__layer" onClick={() => menuScrollTarget('.portfolio__wrapper')}>
+                     <h2>portfolio</h2>
+                  </div>
+                  <div className="text__layer" onClick={() => menuScrollTarget('.partners__wrapper')}>
+                     <h2>our partners</h2>
+                  </div>
+                  <div className="text__layer" onClick={() => menuScrollTarget('footer')}>
+                     <h2>CONTACT</h2>
+                  </div>
+               </div>
+
+               <div className="menu__bottom">
+                  <div className="mail__box">
+                     <span>Say hi</span>
+                     <div className="line"></div>
+                     <span>hello@astralstudios.com</span>
+                  </div>
+               </div>
             </div>
          </div>
       </div>

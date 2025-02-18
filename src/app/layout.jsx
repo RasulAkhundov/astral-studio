@@ -6,6 +6,11 @@ import Loader from '@/layouts/Loader/Loader';
 import Header from '@/layouts/Header/Header';
 import VideoModal from '@/layouts/VideoModal/VideoModal';
 
+export const metadata = {
+  title: 'Astral Studios',
+  description: 'Bringing ideas to life with powerful animations and hyper-efficient workflows.',
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
