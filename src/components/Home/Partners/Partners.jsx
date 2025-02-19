@@ -187,7 +187,7 @@ export default function Partners() {
                                  draggable={false}
                               />
 
-                              <span>{p.title}</span>
+                              {/* <span>{p.title}</span> */}
                            </div>
                         ))
                      }

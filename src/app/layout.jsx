@@ -53,6 +53,7 @@ animations and hyper-efficient workflows." />
         <LenisProvider>
           <Loader />
           <Navbar />
+          <Header />
           {/* <VideoModal /> */}
 
           {children}

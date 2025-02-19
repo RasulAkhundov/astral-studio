@@ -10,7 +10,6 @@ import gsap from 'gsap';
 export default function Navbar() {
    const lenis = useLenis();
    const logoWrapper = useRef(null);
-   // const [time, setTime] = useState(null);
    const [menuActive, setMenuActive] = useState(false);
 
    useEffect(() => {
@@ -47,23 +46,6 @@ export default function Navbar() {
          ease: 'expo.out'
       })
    }, []);
-
-   // useEffect(() => {
-   //    const interval = setInterval(() => {
-   //       const now = new Date();
-   //       const options = {
-   //          timeZone: "Asia/Baku",
-   //          hour: "2-digit",
-   //          minute: "2-digit",
-   //          hour12: true,
-   //       };
-   //       const formattedTime = new Intl.DateTimeFormat("en-US", options).format(now);
-
-   //       setTime(`${formattedTime}`);
-   //    }, 1000);
-
-   //    return () => clearInterval(interval);
-   // }, []);
 
    const handleScrollToTop = (e) => {
       e.preventDefault(); // Sayfanın default davranışını engelle
@@ -129,11 +111,13 @@ export default function Navbar() {
             </div>
 
             <div className="navs__wrapper">
-               <div className="mail__box">
-                  <span>Say hi</span>
-                  <div className="line"></div>
-                  <span>hello@astralstudios.com</span>
-               </div>
+               <Link href={"mailto:hello@astralstudios.io"}>
+                  <div className="mail__box">
+                     <span>Say hi</span>
+                     <div className="line"></div>
+                     <span>hello@astralstudios.io</span>
+                  </div>
+               </Link>
 
                {/* <div className="watch__box">
                   <span>{time}</span>
@@ -166,11 +150,13 @@ export default function Navbar() {
                </div>
 
                <div className="menu__bottom">
-                  <div className="mail__box">
-                     <span>Say hi</span>
-                     <div className="line"></div>
-                     <span>hello@astralstudios.com</span>
-                  </div>
+                  <Link href={"mailto:hello@astralstudios.io"}>
+                     <div className="mail__box">
+                        <span>Say hi</span>
+                        <div className="line"></div>
+                        <span>hello@astralstudios.io</span>
+                     </div>
+                  </Link>
                </div>
             </div>
          </div>

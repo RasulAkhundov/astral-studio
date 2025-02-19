@@ -109,20 +109,22 @@ export default function Footer() {
                   </svg>
                </div>
 
-               <div className="mail__box">
-                  <span>Say hi</span>
-                  <div className="line"></div>
-                  <span>hello@astralstudios.com</span>
-               </div>
+               <Link href={"mailto:hello@astralstudios.io"}>
+                  <div className="mail__box">
+                     <span>Say hi</span>
+                     <div className="line"></div>
+                     <span>hello@astralstudios.io</span>
+                  </div>
+               </Link>
 
-               <div className="number__box">
+               {/* <div className="number__box">
                   <Link href={'mailto:hello@astralstudios.com'} className='mail__text'>
                      <span>hello@astralstudios.com</span>
                   </Link>
                   <Link href={'/'}>
                      <span>+000 0000 000 000</span>
                   </Link>
-               </div>
+               </div> */}
             </div>
          </div>
       </footer>
