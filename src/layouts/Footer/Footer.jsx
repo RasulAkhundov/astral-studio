@@ -61,7 +61,7 @@ export default function Footer() {
                   </div>
                </div>
 
-               <Button className='button__black' speed={'0.02'}>
+               <Button className='button__black' speed={'0.02'} href={"mailto:hello@astralstudios.io"} target='_blank'>
                   GET IN TOUCH WITH US
                </Button>
             </div>
