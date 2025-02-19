@@ -55,6 +55,8 @@ export default function Partners() {
       }
    ]
 
+   const extendedPartners = [...partners, ...partners];
+
    useEffect(() => {
       gsap.registerPlugin(ScrollTrigger);
 
@@ -174,7 +176,7 @@ export default function Partners() {
                      // onMouseLeave={handleMouseLeave}
                   >
                      {
-                        partners.map((p, i) => (
+                        extendedPartners.map((p, i) => (
                            <div className="single-partner__wrapper" key={i}>
                               <Image
                                  src={p.img}
