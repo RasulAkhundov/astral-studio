@@ -7,8 +7,6 @@ import VideoModal from '@/layouts/VideoModal/VideoModal';
 
 export default function Portfolio() {
   const lenis = useLenis();
-  const iframeRef = useRef(null);
-  let player = null;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpen = () => {
@@ -23,7 +21,6 @@ export default function Portfolio() {
       <div className="portfolio-inner__wrapper">
         <div className="video__wrapper">
           <iframe
-            ref={iframeRef}
             src="https://player.vimeo.com/video/1057306776?h=5b3c302210&autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479&muted=1&controls=0"
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
@@ -32,9 +29,13 @@ export default function Portfolio() {
           </iframe>
         </div>
 
-        <svg className='play__btn' xmlns="http://www.w3.org/2000/svg" width="100" height="102" viewBox="0 0 100 102" fill="none" onClick={handleOpen}>
-          <path fillRule="evenodd" clipRule="evenodd" d="M50 101.134C77.6142 101.134 100 78.6881 100 51C100 23.312 77.6142 0.866333 50 0.866333C22.3858 0.866333 0 23.312 0 51C0 78.6881 22.3858 101.134 50 101.134ZM39.5263 69.6579L71.1053 51.377L39.5263 33.0961V69.6579Z" fill="white" />
-        </svg>
+        <div className="play-btn__wrapper" onClick={handleOpen}>  
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+            <path d="M0 2.55551V12.1255C0 14.0855 2.13 15.3155 3.83 14.3355L7.98 11.9455L12.13 9.54551C13.83 8.56551 13.83 6.11551 12.13 5.13551L7.98 2.73551L3.83 0.345508C2.13 -0.634492 0 0.585507 0 2.55551Z" fill="white" />
+          </svg>
+
+          <span>play reel</span>
+        </div>
       </div>
 
       {isModalOpen && <VideoModal setIsModalOpen={setIsModalOpen} />} {/* Modal Aç */}
